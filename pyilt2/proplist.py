@@ -5,8 +5,11 @@ Physical properties
 (c) 2018 Frank Roemer; see http://wgserve.de/pyilt2
 Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
 """
+import logging
 
 import requests
+
+logger = logging.getLogger(__name__)
 
 prop2abr = {'Activity': 'a',
  'Adiabatic compressibility': 'kS',
@@ -20,6 +23,7 @@ prop2abr = {'Activity': 'a',
  'Electrical conductivity': 'econd',
  'Enthalpy': 'H',
  'Enthalpy function {H(T)-H(0)}/T': 'HvT',
+ 'Enthalpy of solution': 'Hsol',
  'Enthalpy of dilution': 'Hdil',
  'Enthalpy of mixing of a binary solvent with component': 'Hmix',
  'Enthalpy of transition or fusion': 'Hfus',
@@ -47,7 +51,8 @@ prop2abr = {'Activity': 'a',
  'Partial molar volume': 'Vpm',
  'Refractive index': 'n',
  'Relative permittivity': 'rperm',
- 'Self-diffusion coefficient': 'Dself',
+ 'Self diffusion coefficient': 'Dself',
+ 'Binary diffusion coefficient': 'Dbin',
  'Speed of sound': 'sos',
  'Surface tension liquid-gas': 'slg',
  'Thermal conductivity': 'Tcond',
@@ -57,6 +62,7 @@ prop2abr = {'Activity': 'a',
  'Upper consolute composition': 'Xucon',
  'Upper consolute pressure': 'Pucon',
  'Upper consolute temperature': 'Tucon',
+ 'Lower consolute temperature': 'Lucon',
  'Viscosity': 'visc'}
 
 abr2prop = {v: k for k, v in prop2abr.items()}
@@ -83,7 +89,12 @@ class __abr2keyDict(dict):
             prpKeys += pcls['key']
         prop2key = dict(zip(prpNames, prpKeys))
         for prpName, prpKey in prop2key.items():
-            self.__dict__[prop2abr[prpName]] = prpKey
+            try:
+                self.__dict__[prop2abr[prpName]] = prpKey
+            except KeyError:
+                logger.warning(
+                    "Found unrecognised property '%s', ignoring for now but you want to support this just add"
+                    "it to the abbreviations dictionary 'prop2abr' in proplist.py", prpName)
 
     def __pkcache(func):
         def func_wrapper(self, *args):
