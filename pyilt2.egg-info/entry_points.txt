@@ -1,0 +1,3 @@
+[console_scripts]
+pyilt2report = pyilt2.report:run
+
