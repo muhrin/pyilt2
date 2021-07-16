@@ -12,7 +12,7 @@ def read(fname):
 
 
 setup(
-    name='pyilt2',
+    name='pyilt22',
     version=version['__version__'],
     author='Frank Roemer',
     author_email='froemer76@googlemail.com',

@@ -1,6 +1,10 @@
 Changelog
 =========
 
+version 0.9.9
+-------------
+* this is simply the original version from Frank Roemer updated to be comparible with ILThermo2 as it was on the 16/07/2021.
+
 version 0.9.8
 -------------
 * keys for physical properties are resolved now just in time, see :data:`pyilt2.abr2key` and :data:`pyilt2.properties`.
