@@ -4,6 +4,7 @@ Changelog
 version 0.9.9
 -------------
 * this is simply the original version from Frank Roemer updated to be comparible with ILThermo2 as it was on the 16/07/2021.
+* to be able to upload to pypi I've had to change the name to pyilt22
 
 version 0.9.8
 -------------
