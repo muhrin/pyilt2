@@ -20,7 +20,7 @@ http://wgserve.de/pyilt2/
 Requirements
 ------------
 
-* Python 2 or 3
+* Python 3.5+
 * `NumPy`_
 * `Requests`_: HTTP for Humans
 

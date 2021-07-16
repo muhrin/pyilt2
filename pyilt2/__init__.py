@@ -106,7 +106,7 @@ def query(comp='', numOfComp=0, year='', author='', keywords='', prop=''):
     :raises pyilt2.queryError: if the database returns an Error on a query
     """
     if prop:
-        if prop not in abr2prop.keys():
+        if prop not in list(abr2prop.keys()):
             raise propertyError(prop)
         else:
             # prp = properties[prop][0]
@@ -168,7 +168,7 @@ class result(object):
     def __iter__(self):
         return self
 
-    def next(self):
+    def __next__(self):
         if self._currentRefIndex < len(self):
             out = self.refs[self._currentRefIndex]
             self._currentRefIndex += 1

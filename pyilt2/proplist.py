@@ -65,7 +65,7 @@ prop2abr = {'Activity': 'a',
  'Lower consolute temperature': 'Lucon',
  'Viscosity': 'visc'}
 
-abr2prop = {v: k for k, v in prop2abr.items()}
+abr2prop = {v: k for k, v in list(prop2abr.items())}
 
 
 class __abr2keyDict(dict):
@@ -84,11 +84,11 @@ class __abr2keyDict(dict):
         prpNames = []
         prpKeys = []
         for pcls in prpDict['plist']:
-            pcls['name'] = map(str.strip, pcls['name'])
+            pcls['name'] = list(map(str.strip, pcls['name']))
             prpNames += pcls['name']
             prpKeys += pcls['key']
-        prop2key = dict(zip(prpNames, prpKeys))
-        for prpName, prpKey in prop2key.items():
+        prop2key = dict(list(zip(prpNames, prpKeys)))
+        for prpName, prpKey in list(prop2key.items()):
             try:
                 self.__dict__[prop2abr[prpName]] = prpKey
             except KeyError:
@@ -119,15 +119,15 @@ class __abr2keyDict(dict):
 
     @__pkcache
     def keys(self):
-        return self.__dict__.keys()
+        return list(self.__dict__.keys())
 
     @__pkcache
     def values(self):
-        return self.__dict__.values()
+        return list(self.__dict__.values())
 
     @__pkcache
     def items(self):
-        return self.__dict__.items()
+        return list(self.__dict__.items())
 
 
 abr2key = __abr2keyDict()

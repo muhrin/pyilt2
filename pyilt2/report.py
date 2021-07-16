@@ -7,7 +7,7 @@ Simple example for a search & report tool using the pyILT2 library.
 Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
 """
 
-from __future__ import print_function
+
 from . import (properties, prop2abr, abr2prop, query, __version__)
 import argparse
 import datetime
@@ -194,7 +194,7 @@ def doicache( func ):
     _doicache = {}
     def func_wrapper( citation ):
         _hash = hash(citation)
-        if _hash in _doicache.keys():
+        if _hash in list(_doicache.keys()):
             return _doicache[_hash]
         else:
             _doicache[_hash] = func(citation)
@@ -354,7 +354,7 @@ def run():
     # check the 'phys. property' search option
     sprop = ''
     if args.p:
-        if args.p not in abr2prop.keys():
+        if args.p not in list(abr2prop.keys()):
             print('Error! Invalid abbreviation "{0:s}" for physical property.'.format(args.p))
             exit(1)
         else:
