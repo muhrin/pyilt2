@@ -24,10 +24,10 @@ setup(
     entry_points={
         'console_scripts': ['pyilt2report=pyilt2.report:run'],
     },
-    package_data={'': ['README', 'LICENSE', 'CHANGELOG', 'requirements.txt']},
+    package_data={'': ['README.rst', 'LICENSE', 'CHANGELOG', 'requirements.txt']},
     data_files=[('man/man1', ['pyilt2report.1'])],
     include_package_data=True,
-    long_description=read('README'),
+    long_description=read('README.rst'),
     install_requires=read('requirements.txt').splitlines(),
     python_requires='>=3.5',
     classifiers=[
